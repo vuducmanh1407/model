@@ -49,6 +49,7 @@ class UNet(nn.Module):
             x = down(x)
             skip_connections.append(x)
             x = self.pools[i](x)
+            i+=1
 
         x = self.bottleneck(x)
 
@@ -66,12 +67,12 @@ class UNet(nn.Module):
         
         return self.final_conv(x)
 
-# def test():
-#     x = torch.randn((3, 1, 161, 161))
-#     model = UNet(in_channels=1, out_channels=1)
-#     preds = model(x)
-#     print(x.shape)
-#     print(preds.shape)
+def test():
+    x = torch.randn((3, 1, 161, 161))
+    model = UNet(in_channels=1, out_channels=1)
+    preds = model(x)
+    print(x.shape)
+    print(preds.shape)
 
 if __name__ == "__main__":
-    pass
+    test()
